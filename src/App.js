@@ -43,8 +43,23 @@ class App extends Component {
     this.setState({person:person});
   }
   render() {
-
+    const style = {
+      "backgroundColor": "green",
+      "color": "white",
+      "padding": "8px",
+      "border": "1px solid blue",
+      "cursor": "pointer",
+      "fontFamily": "inherit"
+    };
     let person = null;
+    const classes = [];
+    if (this.state.person.length <= 2) {
+        classes.push('red');
+    }
+    if (this.state.person.length <= 1) {
+        classes.push('bold');
+        console.log(classes);
+    }
     if (this.state.showPerson) {
       person = (
         <div>
@@ -61,21 +76,16 @@ class App extends Component {
           
         </div>
       );
+      style.backgroundColor = "red";
     }
 
-    const style = { 
-        "backgroundColor": "white", 
-        "padding": "8px", 
-        "border": "1px solid blue", 
-        "cursor": "pointer", 
-        "fontFamily": "inherit" 
-      };
+    
 
 
     return (
       <div className="App">
-        <h1>I am using React js </h1>
-        <p>this is working !!!</p>
+        <h1>I am using React js!! </h1>
+        <p className={classes.join(' ')}>this is working !!!</p>
         <button style={style} onClick={this.togglePersonHandler}>Switch</button>
         {person}
         
