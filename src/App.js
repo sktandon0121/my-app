@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 
@@ -9,7 +9,7 @@ class App extends Component {
     person : [
       {id :10,name:  "Manu",age:15},
       {id :20,name:  "Subodh",age:21},
-      {id :30,name:  "Sachin Dheer",age:24},
+      {id :30,name:  "Shukla",age:24},
     ],
     showPerson:false
   }
@@ -43,22 +43,15 @@ class App extends Component {
     this.setState({person:person});
   }
   render() {
-    const style = {
-      "backgroundColor": "green",
-      "color": "white",
-      "padding": "8px",
-      "border": "1px solid blue",
-      "cursor": "pointer",
-      "fontFamily": "inherit"
-    };
+    
     let person = null;
-    const classes = [];
+    let btnClass = '';
+    const assignedClasses = [];
     if (this.state.person.length <= 2) {
-        classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if (this.state.person.length <= 1) {
-        classes.push('bold');
-        console.log(classes);
+      assignedClasses.push(classes.bold);
     }
     if (this.state.showPerson) {
       person = (
@@ -73,20 +66,19 @@ class App extends Component {
               
             />
           })}
-          
         </div>
       );
-      style.backgroundColor = "red";
+      btnClass = classes.red;
     }
 
     
 
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>I am using React js!! </h1>
-        <p className={classes.join(' ')}>this is working !!!</p>
-        <button style={style} onClick={this.togglePersonHandler}>Switch</button>
+        <p className={assignedClasses.join(' ')}>this is working !!!</p>
+        <button className={btnClass} onClick={this.togglePersonHandler}>Switch</button>
         {person}
         
       </div>
